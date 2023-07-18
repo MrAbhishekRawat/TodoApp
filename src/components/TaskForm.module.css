@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    
   }
   
   .form {
@@ -13,7 +14,7 @@
     justify-content: center;
     gap: 1rem;
     padding: 2rem;
-    background-color: #f7f7f7;
+    background-color: #8f7c7c;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -42,6 +43,6 @@
   }
   
   .button:hover {
-    background-color: #45a049;
+    background-color: #2ac032;
   }
   

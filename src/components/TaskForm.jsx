@@ -18,14 +18,29 @@ const TaskForm = ({ addTask }) => {
     setTime(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    addTask({ task, date, time });
+    const res = await fetch("/api/saveTasks", {
+      method: "POST",
+      body: JSON.stringify({
+        task,
+        date,
+        time,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await res.json();
+    console.log(result);
+    if (result.acknowledged) {
+      addTask({ _id: insertedId, task, date, time });
 
-    setTask("");
-    setDate("");
-    setTime("");
+      setTask("");
+      setDate("");
+      setTime("");
+    }
   };
 
   return (
