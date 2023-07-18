@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./TaskForm.module.css";
 
-const TaskForm = ({ addTask }) => {
+const TaskForm = () => {
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -27,6 +27,7 @@ const TaskForm = ({ addTask }) => {
         task,
         date,
         time,
+        isCompleted: false 
       }),
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +36,6 @@ const TaskForm = ({ addTask }) => {
     const result = await res.json();
     console.log(result);
     if (result.acknowledged) {
-      addTask({ _id: insertedId, task, date, time });
 
       setTask("");
       setDate("");
