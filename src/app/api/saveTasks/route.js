@@ -45,3 +45,19 @@ export async function PUT(req, res) {
   client.close();
     return new Response(JSON.stringify({result: result}));
 }
+
+export async function DELETE(req, res) {
+  const { _id } = await req.json();
+  console.log(_id)
+  const client = await MongoClient.connect(mongoUrl, {
+      serverSelectionTimeoutMS: 5000,
+  });
+
+  const db = client.db();
+  const todoCollection = db.collection("task");
+  const result = await todoCollection.deleteOne({ _id: new ObjectId(_id) });
+  console.log(result)
+
+  client.close();
+  return new Response(JSON.stringify({ message: "Todo Deleted" }))
+}
